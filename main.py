@@ -44,7 +44,7 @@ print("First few rows of the scaled training set:\n", pd.DataFrame(X_train_scale
 #Neural Network
 from sklearn.neural_network import MLPClassifier
 # Create a neural network model
-nn_model = MLPClassifier(hidden_layer_sizes=(100,), max_iter=500, random_state=42)
+nn_model = MLPClassifier(hidden_layer_sizes=(100,100), max_iter=500, random_state=42)
 # Train the model
 nn_model.fit(X_train_scaled, y_train)
 # Evaluate the model
@@ -58,6 +58,22 @@ print("Accuracy of the neural network model:", accuracy)
 print("Classification report:\n", classification_report(y_test, y_pred))
 # Display confusion matrix
 print("Confusion matrix:\n", confusion_matrix(y_test, y_pred))
+
+#Decision Tree
+from sklearn.tree import DecisionTreeClassifier
+# Create a decision tree model
+dt_model = DecisionTreeClassifier(random_state=42)      
+# Train the model
+dt_model.fit(X_train_scaled, y_train)
+# Make predictions on the test set
+y_pred_dt = dt_model.predict(X_test_scaled)
+# Calculate accuracy
+accuracy_dt = accuracy_score(y_test, y_pred_dt)
+print("Accuracy of the decision tree model:", accuracy_dt)
+# Display classification report
+print("Classification report for decision tree:\n", classification_report(y_test, y_pred_dt))
+# Display confusion matrix
+print("Confusion matrix for decision tree:\n", confusion_matrix(y_test, y_pred_dt))
 
 
 
